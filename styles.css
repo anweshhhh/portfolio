@@ -267,6 +267,23 @@ h1 {
   font-size: 1.12rem;
 }
 
+.project-shot {
+  margin: 0.9rem 0 0;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  border: 1px solid rgba(173, 196, 228, 0.2);
+  background: rgba(6, 11, 20, 0.82);
+  min-height: 165px;
+  cursor: pointer;
+}
+
+.project-shot img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
 .pill {
   font-size: 0.72rem;
   padding: 0.18rem 0.5rem;
@@ -310,12 +327,44 @@ h1 {
   font-size: 0.78rem;
 }
 
-.project-card > a {
-  margin-top: 0.85rem;
-  display: inline-block;
-  color: #ffd0ac;
+.project-actions {
+  margin-top: 0.95rem;
+  display: flex;
+  gap: 0.7rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.quick-view-btn,
+.project-actions a {
+  appearance: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(173, 196, 228, 0.1);
+  color: var(--text);
+  padding: 0.38rem 0.8rem;
+  font-size: 0.78rem;
+  font-family: "JetBrains Mono", monospace;
   text-decoration: none;
-  border-bottom: 1px dashed rgba(255, 140, 66, 0.45);
+  cursor: pointer;
+}
+
+.project-actions a {
+  color: #ffd0ac;
+}
+
+.quick-view-btn:hover,
+.project-actions a:hover {
+  border-color: rgba(143, 231, 204, 0.5);
+}
+
+.quick-view-btn:focus-visible,
+.project-actions a:focus-visible,
+.modal-close:focus-visible,
+.carousel-btn:focus-visible,
+.modal-actions a:focus-visible {
+  outline: 2px solid #8fe7cc;
+  outline-offset: 2px;
 }
 
 .timeline {
@@ -389,6 +438,141 @@ h1 {
   color: var(--text-muted);
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
+.project-modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 50;
+}
+
+.project-modal.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.project-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 6, 12, 0.8);
+}
+
+.project-modal-panel {
+  position: relative;
+  width: min(860px, 92vw);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: linear-gradient(170deg, rgba(18, 27, 43, 0.96), rgba(9, 15, 27, 0.97));
+  border: 1px solid rgba(173, 196, 228, 0.26);
+  border-radius: 1rem;
+  padding: 1rem 1rem 1.1rem;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.45);
+}
+
+.modal-close {
+  appearance: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(173, 196, 228, 0.1);
+  color: var(--text);
+  padding: 0.3rem 0.75rem;
+  font-size: 0.75rem;
+  font-family: "JetBrains Mono", monospace;
+  cursor: pointer;
+}
+
+.modal-subtitle {
+  margin: 0.45rem 0 0;
+  color: var(--text-muted);
+}
+
+.modal-carousel {
+  margin-top: 0.85rem;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.carousel-btn {
+  appearance: none;
+  border: 1px solid var(--line);
+  border-radius: 0.7rem;
+  background: rgba(173, 196, 228, 0.12);
+  color: var(--text);
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1.05rem;
+  cursor: pointer;
+}
+
+.carousel-btn[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.modal-shot {
+  margin: 0;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  border: 1px solid rgba(173, 196, 228, 0.2);
+  background: rgba(6, 11, 20, 0.82);
+}
+
+.modal-shot img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+.modal-caption {
+  margin: 0.55rem 0 0;
+  color: #9fd7c4;
+  font-size: 0.82rem;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.modal-problem {
+  margin: 0.85rem 0 0;
+  color: var(--text-muted);
+}
+
+.modal-highlights {
+  margin: 0.65rem 0 0;
+  color: #d9e8f7;
+  padding-left: 1.1rem;
+}
+
+.modal-actions {
+  margin-top: 0.85rem;
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.modal-actions a {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(173, 196, 228, 0.1);
+  color: #ffd0ac;
+  text-decoration: none;
+  padding: 0.42rem 0.85rem;
+  font-size: 0.78rem;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.modal-actions a.hidden {
+  display: none;
+}
+
 .footer {
   border-top: 1px solid rgba(173, 196, 228, 0.08);
   padding: 1.4rem 0 2.4rem;
@@ -439,5 +623,22 @@ h1 {
 
   h1 {
     font-size: clamp(2rem, 11vw, 3rem);
+  }
+
+  .project-shot img {
+    height: 165px;
+  }
+
+  .project-modal-panel {
+    padding: 0.85rem;
+  }
+
+  .modal-carousel {
+    grid-template-columns: 1fr;
+  }
+
+  .carousel-btn {
+    width: 100%;
+    height: 2rem;
   }
 }

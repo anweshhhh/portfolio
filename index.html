@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anwesh Kumar Singh | Software Engineer</title>
+    <meta
+      name="description"
+      content="Portfolio of Anwesh Kumar Singh - backend and distributed systems engineer building reliable production platforms."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="mesh"></div>
+
+    <header class="site-header">
+      <nav class="nav container">
+        <a class="brand" href="#top">AKS</a>
+        <div class="nav-links">
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero container reveal">
+        <p class="eyebrow">Engineer / Builder | Chicago, IL</p>
+        <h1>Backend engineer building reliable distributed systems.</h1>
+        <p class="hero-copy">
+          I build production systems across Go, Java, Python, and TypeScript. Currently
+          building TraceCase, an early-stage QA automation product for B2B teams.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">View Engineering Case Studies</a>
+          <a class="btn btn-ghost" href="https://github.com/anweshhhh/TraceCase" target="_blank" rel="noreferrer"
+            >TraceCase: Early Access</a
+          >
+        </div>
+        <ul class="quick-stats">
+          <li>
+            <span class="stat-value">5</span>
+            <span class="stat-label">Production-grade systems built</span>
+          </li>
+          <li>
+            <span class="stat-value">10k+</span>
+            <span class="stat-label">Req/sec reliability testing</span>
+          </li>
+          <li>
+            <span class="stat-value">4</span>
+            <span class="stat-label">Core backend stacks shipped</span>
+          </li>
+        </ul>
+        <div class="now-building">
+          <p class="eyebrow">Now Building</p>
+          <p>
+            <strong>TraceCase (MVP):</strong> requirement-to-regression workflow for B2B
+            SaaS QA teams. Open to 2-3 design partners.
+            <a href="mailto:anwesh.boston@gmail.com?subject=TraceCase%20Design%20Partner">Connect</a>
+          </p>
+        </div>
+      </section>
+
+      <section class="section container reveal" id="projects">
+        <div class="section-head">
+          <p class="eyebrow">Selected Work</p>
+          <h2>Featured product build plus backend engineering systems</h2>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card" data-repo="anweshhhh/TraceCase">
+            <div class="project-top">
+              <h3>TraceCase</h3>
+              <span class="pill">TypeScript</span>
+            </div>
+            <p>
+              QA test case and regression pack generator for B2B SaaS teams with
+              requirement snapshots, asynchronous generation jobs, review workflows, and
+              traceable audit events.
+            </p>
+            <p class="project-impact">
+              Impact: turns messy requirements into auditable draft test packs with faster
+              review cycles.
+            </p>
+            <ul>
+              <li>Requirement-to-test traceability with versioned source snapshots</li>
+              <li>Async generation and export pipeline using Inngest jobs</li>
+              <li>Role-based review, approval, and immutable locked packs</li>
+            </ul>
+            <div class="project-meta">
+              <span class="repo-stat" data-field="stars">Stars: --</span>
+              <span class="repo-stat" data-field="updated">Updated: --</span>
+            </div>
+            <a href="https://github.com/anweshhhh/TraceCase" target="_blank" rel="noreferrer"
+              >Open repository</a
+            >
+          </article>
+
+          <article class="project-card" data-repo="anweshhhh/clob-market-maker-lab">
+            <div class="project-top">
+              <h3>CLOB Market Maker Lab</h3>
+              <span class="pill">Python</span>
+            </div>
+            <p>
+              Real-time Polymarket CLOB market-maker with resilient websocket ingestion,
+              quote generation, paper simulation, backtesting, and dashboard support.
+            </p>
+            <p class="project-impact">
+              Impact: de-risks strategy changes before live capital via reproducible paper
+              and backtest loops.
+            </p>
+            <ul>
+              <li>Market data ingestion over WebSocket with safety rails</li>
+              <li>Paper trading, risk controls, and PnL tracking</li>
+              <li>Backtest pipeline with report generation</li>
+            </ul>
+            <div class="project-meta">
+              <span class="repo-stat" data-field="stars">Stars: --</span>
+              <span class="repo-stat" data-field="updated">Updated: --</span>
+            </div>
+            <a href="https://github.com/anweshhhh/clob-market-maker-lab" target="_blank" rel="noreferrer"
+              >Open repository</a
+            >
+          </article>
+
+          <article class="project-card" data-repo="anweshhhh/securityq-autofill">
+            <div class="project-top">
+              <h3>SecurityQ Autofill</h3>
+              <span class="pill">TypeScript</span>
+            </div>
+            <p>
+              Security questionnaire autofill and evidence finder with document ingestion,
+              embedding pipeline, and answer APIs for faster vendor review cycles.
+            </p>
+            <p class="project-impact">
+              Impact: shortens questionnaire turnaround by auto-drafting evidence-backed
+              responses.
+            </p>
+            <ul>
+              <li>Document embedding + searchable evidence workflow</li>
+              <li>Questionnaire parsing and API-backed response generation</li>
+              <li>Next.js interface with local runbook and test coverage</li>
+            </ul>
+            <div class="project-meta">
+              <span class="repo-stat" data-field="stars">Stars: --</span>
+              <span class="repo-stat" data-field="updated">Updated: --</span>
+            </div>
+            <a href="https://github.com/anweshhhh/securityq-autofill" target="_blank" rel="noreferrer"
+              >Open repository</a
+            >
+          </article>
+
+          <article class="project-card" data-repo="anweshhhh/webhook-reliability-platform">
+            <div class="project-top">
+              <h3>Webhook Reliability Platform</h3>
+              <span class="pill">Java</span>
+            </div>
+            <p>
+              Durable webhook delivery platform in plain Java featuring decoupled ingestion,
+              claim-and-lock worker execution, retry scheduling, and delivery audit logs.
+            </p>
+            <p class="project-impact">
+              Impact: prevents silent event loss through durable retries and auditable
+              at-least-once delivery.
+            </p>
+            <ul>
+              <li>PostgreSQL-backed event durability and state transitions</li>
+              <li>Concurrency-safe worker claims with SKIP LOCKED</li>
+              <li>Exponential backoff and at-least-once delivery guarantees</li>
+            </ul>
+            <div class="project-meta">
+              <span class="repo-stat" data-field="stars">Stars: --</span>
+              <span class="repo-stat" data-field="updated">Updated: --</span>
+            </div>
+            <a href="https://github.com/anweshhhh/webhook-reliability-platform" target="_blank" rel="noreferrer"
+              >Open repository</a
+            >
+          </article>
+
+          <article class="project-card" data-repo="anweshhhh/distributed-rate-limiter">
+            <div class="project-top">
+              <h3>Distributed Rate Limiter</h3>
+              <span class="pill">Go</span>
+            </div>
+            <p>
+              Rate limiter as a service with Redis + Lua atomicity, fixed/sliding window
+              strategies, token bucket support, and deterministic concurrency testing.
+            </p>
+            <p class="project-impact">
+              Impact: protects APIs from burst overload with deterministic distributed
+              throttling.
+            </p>
+            <ul>
+              <li>Single-roundtrip atomic decision logic in Redis Lua scripts</li>
+              <li>Multiple algorithm support for different traffic profiles</li>
+              <li>Deterministic test harness with miniredis and fail-closed design</li>
+            </ul>
+            <div class="project-meta">
+              <span class="repo-stat" data-field="stars">Stars: --</span>
+              <span class="repo-stat" data-field="updated">Updated: --</span>
+            </div>
+            <a href="https://github.com/anweshhhh/distributed-rate-limiter" target="_blank" rel="noreferrer"
+              >Open repository</a
+            >
+          </article>
+
+        </div>
+      </section>
+
+      <section class="section container reveal" id="experience">
+        <div class="section-head">
+          <p class="eyebrow">Experience</p>
+          <h2>Production delivery across fintech, infra, and automation</h2>
+        </div>
+
+        <div class="timeline">
+          <article>
+            <h3>Software Engineer (Full Stack) | Budgetwise.ai</h3>
+            <p class="timeline-meta">Jan 2026 - Present | Remote, USA</p>
+            <p>
+              Shipped backend endpoints with Firebase, delivered React modules, and integrated
+              AI-powered classification to reduce manual content review.
+            </p>
+          </article>
+
+          <article>
+            <h3>Platform / Infrastructure Support Engineer | AWS Data Center</h3>
+            <p class="timeline-meta">May 2025 - Nov 2025 | New Carlisle, USA</p>
+            <p>
+              Built workflow logic for infrastructure provisioning, supported AWS services at
+              large record volume, and improved incident response through production monitoring.
+            </p>
+          </article>
+
+          <article>
+            <h3>Senior Systems Engineer | Royal Bank of Scotland (Infosys)</h3>
+            <p class="timeline-meta">Mar 2020 - May 2022 | Chennai, India</p>
+            <p>
+              Migrated high-volume core records, designed SQL reconciliation pipelines, and
+              maintained Java/SQL batch jobs for regulatory workloads.
+            </p>
+          </article>
+
+          <article>
+            <h3>Systems Engineer | Toyota & Lexus North America (Infosys)</h3>
+            <p class="timeline-meta">Mar 2019 - Feb 2020 | Chennai, India</p>
+            <p>
+              Stabilized backend migration systems, authored validation scripts, and resolved
+              critical data and batch defects under release timelines.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section container reveal" id="skills">
+        <div class="section-head">
+          <p class="eyebrow">Skill Stack</p>
+          <h2>Backend-first toolkit with strong platform fundamentals</h2>
+        </div>
+
+        <div class="skills-grid">
+          <article>
+            <h3>Languages</h3>
+            <p>Go, Java, Python, JavaScript, SQL</p>
+          </article>
+          <article>
+            <h3>Backend & Infra</h3>
+            <p>REST APIs, distributed systems, Redis, Firebase, HTTP/JSON, microservices</p>
+          </article>
+          <article>
+            <h3>Databases & Cloud</h3>
+            <p>PostgreSQL, MySQL, Firestore, AWS (EC2, CloudWatch), GCP, Docker, Linux</p>
+          </article>
+          <article>
+            <h3>Frameworks & Tools</h3>
+            <p>React, Spring, JDBC, Maven, JUnit, Postman, Git, GitHub, VS Code</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section container reveal" id="contact">
+        <div class="contact-card">
+          <p class="eyebrow">Contact</p>
+          <h2>Let’s build reliable systems together.</h2>
+          <p class="founder-note">
+            Also exploring design partnerships for TraceCase with early B2B SaaS QA teams.
+          </p>
+          <div class="contact-links">
+            <a href="mailto:anwesh.boston@gmail.com">anwesh.boston@gmail.com</a>
+            <a href="assets/Anwesh_Kumar_Singh_resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+            <a href="https://github.com/anweshhhh" target="_blank" rel="noreferrer">github.com/anweshhhh</a>
+            <a href="https://www.linkedin.com/in/anwesh-kumar-singh/" target="_blank" rel="noreferrer"
+              >LinkedIn</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer container">
+      <p><span id="year"></span> Anwesh Kumar Singh. Built with HTML, CSS, and JavaScript.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

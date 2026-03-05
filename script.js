@@ -35,11 +35,9 @@ async function hydrateRepoMeta(card) {
     if (!res.ok) throw new Error("GitHub API unavailable");
     const data = await res.json();
 
-    const stars = card.querySelector('[data-field="stars"]');
     const updated = card.querySelector('[data-field="updated"]');
     const pill = card.querySelector(".pill");
 
-    if (stars) stars.textContent = `Stars: ${data.stargazers_count}`;
     if (updated) updated.textContent = `Updated: ${formatDate(data.updated_at)}`;
     if (pill && data.language) pill.textContent = data.language;
   } catch (_error) {

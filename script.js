@@ -62,12 +62,8 @@ const PROJECT_LIBRARY = {
     ],
     images: [
       {
-        src: "https://opengraph.githubassets.com/11/anweshhhh/TraceCase",
-        caption: "Repository snapshot",
-      },
-      {
-        src: "https://opengraph.githubassets.com/12/anweshhhh/TraceCase",
-        caption: "Draft pack generation workflow",
+        src: "assets/projects/tracecase/landing-ui-wide.png",
+        caption: "Landing page from the real Next.js production build captured locally.",
       },
     ],
     demoUrl: "",
@@ -86,12 +82,9 @@ const PROJECT_LIBRARY = {
     ],
     images: [
       {
-        src: "https://opengraph.githubassets.com/21/anweshhhh/clob-market-maker-lab",
-        caption: "Repository snapshot",
-      },
-      {
-        src: "https://raw.githubusercontent.com/anweshhhh/clob-market-maker-lab/main/assets/architecture.svg",
-        caption: "System architecture",
+        src: "assets/projects/clob/terminal-market-scan.png",
+        caption:
+          "CLI scan hitting the live Gamma API and printing restriction diagnostics plus candidate markets.",
       },
     ],
     demoUrl: "",
@@ -110,12 +103,12 @@ const PROJECT_LIBRARY = {
     ],
     images: [
       {
-        src: "https://opengraph.githubassets.com/31/anweshhhh/securityq-autofill",
-        caption: "Repository snapshot",
+        src: "assets/projects/securityq/questionnaires-ui.png",
+        caption: "Authenticated questionnaire pipeline after importing a real 3-question CSV.",
       },
       {
-        src: "https://opengraph.githubassets.com/32/anweshhhh/securityq-autofill",
-        caption: "Questionnaire workflow snapshot",
+        src: "assets/projects/securityq/documents-ui.png",
+        caption: "Evidence library view with an ingested markdown evidence file and chunk metadata.",
       },
     ],
     demoUrl: "",
@@ -134,17 +127,15 @@ const PROJECT_LIBRARY = {
     ],
     images: [
       {
-        src: "https://opengraph.githubassets.com/41/anweshhhh/webhook-reliability-platform",
-        caption: "Repository snapshot",
-      },
-      {
-        src: "https://opengraph.githubassets.com/42/anweshhhh/webhook-reliability-platform",
-        caption: "Delivery worker architecture snapshot",
+        src: "assets/projects/webhook/delivery-flow.png",
+        caption:
+          "Java ingest plus worker run ending in DELIVERED status and a recorded 204 callback attempt.",
       },
     ],
     demoUrl: "",
     githubUrl: "https://github.com/anweshhhh/webhook-reliability-platform",
-    caseStudyUrl: "https://github.com/anweshhhh/webhook-reliability-platform/blob/main/README.md",
+    caseStudyUrl:
+      "https://github.com/anweshhhh/webhook-reliability-platform/blob/main/src/main/java/com/webhook/worker/DeliveryWorker.java",
   },
   ratelimiter: {
     title: "Distributed Rate Limiter",
@@ -158,12 +149,8 @@ const PROJECT_LIBRARY = {
     ],
     images: [
       {
-        src: "https://opengraph.githubassets.com/51/anweshhhh/distributed-rate-limiter",
-        caption: "Repository snapshot",
-      },
-      {
-        src: "https://opengraph.githubassets.com/52/anweshhhh/distributed-rate-limiter",
-        caption: "Algorithm implementation snapshot",
+        src: "assets/projects/ratelimiter/traffic-enforcement.png",
+        caption: "Live Go service run showing fixed-window enforcement after the sixth repeated request.",
       },
     ],
     demoUrl: "",

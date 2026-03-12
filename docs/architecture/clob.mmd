@@ -1,0 +1,40 @@
+flowchart TB
+  Title["CLOB Market Maker Lab<br/>Real-Time Experiment Loop"]:::title
+  Legend["Solid = runtime data/control flow<br/>Analysis path turns recorded data into reports"]:::legend
+  Title ~~~ Legend
+
+  subgraph Inputs["Market Inputs"]
+    direction LR
+    Gamma[/"Gamma API"/]:::external --> Discovery["Market discovery<br/>markets.py"]:::worker
+    FeedSource[/"CLOB WebSocket"/]:::external --> Feed["Market feed<br/>ws_market.py"]:::worker
+  end
+
+  subgraph Runtime["Paper Runtime"]
+    direction LR
+    CLI["main.py CLI<br/>mode orchestration"]:::app
+    Strategy["Strategy engine<br/>quote generation"]:::worker
+    Risk["Risk controls<br/>inventory / loss / KILL"]:::worker
+    Paper["Paper runtime<br/>simulator + recorder"]:::worker
+  end
+
+  subgraph Analysis["Offline Analysis"]
+    direction LR
+    Store[("SQLite ticks + fill journal")]:::db
+    Replay["Backtest + reports<br/>JSON / Markdown"]:::worker
+    Dash["Streamlit dashboard"]:::app
+  end
+
+  Legend ~~~ Gamma
+  Discovery -->|market selection| CLI
+  Feed -->|top-of-book + trades| Strategy
+  CLI -->|token + mode| Strategy
+  Strategy -->|desired quotes| Risk -->|safe quotes| Paper
+  Feed -->|market snapshots| Paper
+  Paper -->|fills + snapshots| Store --> Replay --> Dash
+
+  classDef title fill:transparent,stroke-width:0,color:#f8fbff,font-size:28px,font-weight:800;
+  classDef legend fill:#101b30,stroke:#28415f,color:#c9d9ec,font-size:12px;
+  classDef app fill:#132741,stroke:#20c997,color:#f8fbff;
+  classDef worker fill:#15243c,stroke:#5ec2ff,color:#f8fbff;
+  classDef db fill:#0f1a2d,stroke:#ff8c42,color:#f8fbff;
+  classDef external fill:#191f31,stroke:#ffd0ac,color:#f8fbff;

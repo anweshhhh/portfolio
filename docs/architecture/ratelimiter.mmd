@@ -1,0 +1,30 @@
+flowchart TB
+  Title["Distributed Rate Limiter<br/>Request Path + State Model"]:::title
+  Legend["Solid = request path<br/>State nodes show single-node and distributed enforcement"]:::legend
+  Title ~~~ Legend
+
+  subgraph RequestPath["Request Path"]
+    direction LR
+    Client(["API client"]):::actor --> Api["Go HTTP API<br/>POST /check"]:::app --> Gate["RateLimiter interface"]:::app --> Impl["Limiter implementation<br/>fixed / sliding / token bucket"]:::worker --> Api
+  end
+
+  subgraph State["Enforcement State"]
+    direction LR
+    Local[("Mutex window state<br/>FixedWindowLimiter")]:::db
+    Lua["Lua engines<br/>INCR / TIME / TTL"]:::worker
+    Redis[("Redis keys / hashes<br/>window buckets + token state")]:::db
+    Note["Fail-closed on Redis errors<br/>Tests use miniredis + injected time"]:::legend
+  end
+
+  Legend ~~~ Client
+  Impl -->|single-node mode| Local
+  Impl -->|distributed modes| Lua -->|atomic update| Redis
+  Redis -->|allow / deny| Impl
+  Note ~~~ Redis
+
+  classDef title fill:transparent,stroke-width:0,color:#f8fbff,font-size:28px,font-weight:800;
+  classDef legend fill:#101b30,stroke:#28415f,color:#c9d9ec,font-size:12px;
+  classDef actor fill:#131f33,stroke:#3a5b89,color:#f8fbff,font-weight:700;
+  classDef app fill:#132741,stroke:#20c997,color:#f8fbff;
+  classDef worker fill:#15243c,stroke:#5ec2ff,color:#f8fbff;
+  classDef db fill:#0f1a2d,stroke:#ff8c42,color:#f8fbff;

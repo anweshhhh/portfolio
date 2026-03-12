@@ -62,8 +62,10 @@ const PROJECT_LIBRARY = {
     ],
     images: [
       {
-        src: "assets/projects/tracecase/landing-ui-wide.png",
-        caption: "Landing page from the real Next.js production build captured locally.",
+        src: "assets/projects/tracecase/architecture.svg",
+        alt: "TraceCase architecture diagram showing requirements flowing into async generation, review, export, and audit records.",
+        caption:
+          "Requirement snapshots enter an Inngest-backed generation pipeline, then move through review, export, and audit logging.",
       },
     ],
     demoUrl: "",
@@ -82,9 +84,10 @@ const PROJECT_LIBRARY = {
     ],
     images: [
       {
-        src: "assets/projects/clob/terminal-market-scan.png",
+        src: "assets/projects/clob/architecture.svg",
+        alt: "CLOB market maker architecture diagram showing discovery, live market feed, strategy, risk controls, simulation, and reporting.",
         caption:
-          "CLI scan hitting the live Gamma API and printing restriction diagnostics plus candidate markets.",
+          "Live market discovery and websocket feeds drive a strategy engine, risk controls, paper execution, and reporting outputs.",
       },
     ],
     demoUrl: "",
@@ -103,12 +106,10 @@ const PROJECT_LIBRARY = {
     ],
     images: [
       {
-        src: "assets/projects/securityq/questionnaires-ui.png",
-        caption: "Authenticated questionnaire pipeline after importing a real 3-question CSV.",
-      },
-      {
-        src: "assets/projects/securityq/documents-ui.png",
-        caption: "Evidence library view with an ingested markdown evidence file and chunk metadata.",
+        src: "assets/projects/securityq/architecture.svg",
+        alt: "SecurityQ architecture diagram showing ingestion, chunking, embeddings, evidence retrieval, and cited answer generation.",
+        caption:
+          "Uploaded documents are chunked and embedded for retrieval, then reused during questionnaire autofill to produce cited answers.",
       },
     ],
     demoUrl: "",
@@ -127,9 +128,10 @@ const PROJECT_LIBRARY = {
     ],
     images: [
       {
-        src: "assets/projects/webhook/delivery-flow.png",
+        src: "assets/projects/webhook/architecture.svg",
+        alt: "Webhook delivery architecture diagram showing durable ingest, scheduling, worker claim locking, retries, and delivery audit.",
         caption:
-          "Java ingest plus worker run ending in DELIVERED status and a recorded 204 callback attempt.",
+          "Incoming webhooks are persisted first, claimed safely by workers, retried on schedule, and recorded in an append-only attempt log.",
       },
     ],
     demoUrl: "",
@@ -149,8 +151,10 @@ const PROJECT_LIBRARY = {
     ],
     images: [
       {
-        src: "assets/projects/ratelimiter/traffic-enforcement.png",
-        caption: "Live Go service run showing fixed-window enforcement after the sixth repeated request.",
+        src: "assets/projects/ratelimiter/architecture.svg",
+        alt: "Distributed rate limiter architecture diagram showing request handling, strategy selection, Redis Lua atomic checks, and allow or deny responses.",
+        caption:
+          "Each request passes through a Go limiter service that selects an algorithm and executes atomic Redis Lua state transitions before returning allow or deny.",
       },
     ],
     demoUrl: "",
@@ -194,7 +198,7 @@ function renderCarousel(project) {
   if (!item) return;
 
   modalImage.src = item.src;
-  modalImage.alt = `${project.title} visual ${activeImageIndex + 1}`;
+  modalImage.alt = item.alt || `${project.title} visual ${activeImageIndex + 1}`;
   modalCaption.textContent = item.caption || "";
 
   const hasMany = items.length > 1;

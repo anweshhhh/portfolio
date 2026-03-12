@@ -1,0 +1,38 @@
+flowchart TB
+  Title["Webhook Reliability Platform<br/>Durable Delivery Loop"]:::title
+  Legend["Solid = synchronous request/data flow<br/>Dashed = scheduled / retry path"]:::legend
+  Title ~~~ Legend
+
+  subgraph Ingress["Ingress"]
+    direction LR
+    Producer[/"Webhook producer"/]:::external --> Ingest["HTTP ingest server<br/>/webhooks"]:::app
+  end
+
+  subgraph Durability["Durable State"]
+    direction LR
+    Queue[("webhook_events<br/>status + next_attempt_at")]:::db
+    Attempts[("webhook_delivery_attempts<br/>audit rows")]:::db
+  end
+
+  subgraph Delivery["Worker Runtime"]
+    direction LR
+    Worker["Delivery worker loop<br/>claim + execute + retry"]:::worker
+    Sender["WebhookHttpSender"]:::app
+    Target[/"Target endpoint"/]:::external
+  end
+
+  Legend ~~~ Producer
+  Ingest -->|insert PENDING event| Queue
+  Queue -->|claim next due event<br/>FOR UPDATE SKIP LOCKED| Worker
+  Worker -->|attempt send| Sender -->|POST payload| Target
+  Worker -->|record status / error| Attempts
+  Target -->|2xx / failure| Worker
+  Worker -->|DELIVERED or FAILED| Queue
+  Worker -. backoff + reschedule .-> Queue
+
+  classDef title fill:transparent,stroke-width:0,color:#f8fbff,font-size:28px,font-weight:800;
+  classDef legend fill:#101b30,stroke:#28415f,color:#c9d9ec,font-size:12px;
+  classDef app fill:#132741,stroke:#20c997,color:#f8fbff;
+  classDef worker fill:#15243c,stroke:#5ec2ff,color:#f8fbff;
+  classDef db fill:#0f1a2d,stroke:#ff8c42,color:#f8fbff;
+  classDef external fill:#191f31,stroke:#ffd0ac,color:#f8fbff;

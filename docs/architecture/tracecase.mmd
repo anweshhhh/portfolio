@@ -1,0 +1,43 @@
+flowchart TB
+  Title["TraceCase<br/>Requirement-to-Pack Workflow"]:::title
+  Legend["Solid = request/data flow<br/>Dashed = queued async work"]:::legend
+  Title ~~~ Legend
+
+  subgraph Surface["Product Surface"]
+    direction LR
+    User([Product team<br/>author / reviewer]):::actor --> App["Next.js app<br/>requirements, review, export"]:::app
+  end
+
+  subgraph Async["Async Jobs"]
+    direction LR
+    Queue{{"Inngest events"}}:::queue
+    Gen["Generate pack worker<br/>placeholder generator + schema validation"]:::worker
+    Exp["Export worker<br/>CSV builders"]:::worker
+  end
+
+  subgraph State["Workspace Data"]
+    direction LR
+    Req[("Requirements + snapshots")]:::db
+    Pack[("Packs + jobs")]:::db
+    Audit[("Exports + audit trail")]:::db
+  end
+
+  Legend ~~~ User
+  App -->|save / version| Req
+  App -. enqueue draft pack .-> Queue
+  Queue -. run generation .-> Gen
+  Gen -->|load snapshot + persist pack| Pack
+  App -->|review / approve| Pack
+  Gen -->|job + pack events| Audit
+  App -. request export .-> Queue
+  Queue -. run export .-> Exp
+  Exp -->|write CSV + status| Audit
+  Pack -->|approved pack for export| Exp
+
+  classDef title fill:transparent,stroke-width:0,color:#f8fbff,font-size:28px,font-weight:800;
+  classDef legend fill:#101b30,stroke:#28415f,color:#c9d9ec,font-size:12px;
+  classDef actor fill:#131f33,stroke:#3a5b89,color:#f8fbff,font-weight:700;
+  classDef app fill:#132741,stroke:#20c997,color:#f8fbff;
+  classDef worker fill:#15243c,stroke:#5ec2ff,color:#f8fbff;
+  classDef db fill:#0f1a2d,stroke:#ff8c42,color:#f8fbff;
+  classDef queue fill:#12253b,stroke:#7cc6ff,color:#f8fbff,font-weight:700;

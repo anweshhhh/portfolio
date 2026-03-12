@@ -1,0 +1,44 @@
+flowchart TB
+  Title["SecurityQ Autofill<br/>Evidence-Backed Response Pipeline"]:::title
+  Legend["Solid = request/data flow<br/>Dashed = queued operator action"]:::legend
+  Title ~~~ Legend
+
+  subgraph Surface["Operator Flows"]
+    direction LR
+    User([Security team]):::actor --> App["Next.js UI + APIs<br/>documents, questionnaires, ask"]:::app
+  end
+
+  subgraph State["Evidence + Review Data"]
+    direction LR
+    Corpus[("Documents + chunks<br/>pgvector embeddings")]:::db
+    Questionnaires[("Questionnaires + answers<br/>citations + review state")]:::db
+    Approved[("Approved answers<br/>exact / semantic reuse")]:::db
+  end
+
+  subgraph Runtime["Autofill Runtime"]
+    direction LR
+    Upload["Upload route<br/>extractText + chunkText"]:::worker
+    Model[/"OpenAI models<br/>embedding + grounded answer"/]:::external
+    Autofill["Autofill batch<br/>reuse matcher + answer engine"]:::worker
+  end
+
+  Legend ~~~ User
+  App -->|upload docs| Upload --> Corpus
+  App -. embed pending chunks .-> Model
+  Corpus -->|chunk content| Model
+  Model -->|store vectors| Corpus
+  App -->|import CSV rows| Questionnaires
+  App -. run autofill .-> Autofill
+  Questionnaires -->|pending questions| Autofill
+  Approved -->|exact / near / semantic reuse| Autofill
+  Corpus -->|pgvector evidence retrieval| Autofill
+  Autofill -->|embed question + grounded answer| Model
+  Autofill -->|answers + citations| Questionnaires
+
+  classDef title fill:transparent,stroke-width:0,color:#f8fbff,font-size:28px,font-weight:800;
+  classDef legend fill:#101b30,stroke:#28415f,color:#c9d9ec,font-size:12px;
+  classDef actor fill:#131f33,stroke:#3a5b89,color:#f8fbff,font-weight:700;
+  classDef app fill:#132741,stroke:#20c997,color:#f8fbff;
+  classDef worker fill:#15243c,stroke:#5ec2ff,color:#f8fbff;
+  classDef db fill:#0f1a2d,stroke:#ff8c42,color:#f8fbff;
+  classDef external fill:#191f31,stroke:#ffd0ac,color:#f8fbff;

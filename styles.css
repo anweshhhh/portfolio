@@ -153,6 +153,7 @@ h1 {
   display: flex;
   gap: 0.9rem;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .btn {
@@ -172,6 +173,13 @@ h1 {
   border-color: var(--line);
   color: var(--text);
   background: rgba(173, 196, 228, 0.08);
+}
+
+.hero-link {
+  color: #ffd0ac;
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 140, 66, 0.35);
 }
 
 .quick-stats {
@@ -211,6 +219,24 @@ h1 {
   color: #ffd0ac;
   text-decoration: none;
   border-bottom: 1px dashed rgba(255, 140, 66, 0.45);
+}
+
+.now-building-actions {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.now-building-actions a {
+  border: 1px solid rgba(173, 196, 228, 0.16);
+  border-radius: 999px;
+  background: rgba(173, 196, 228, 0.08);
+  color: #ffd0ac;
+  padding: 0.34rem 0.78rem;
+  font-size: 0.78rem;
+  font-family: "JetBrains Mono", monospace;
+  text-decoration: none;
 }
 
 .stat-value {
@@ -361,9 +387,12 @@ h1 {
 
 .quick-view-btn:focus-visible,
 .project-actions a:focus-visible,
+.hero-link:focus-visible,
+.now-building-actions a:focus-visible,
 .modal-close:focus-visible,
 .carousel-btn:focus-visible,
-.modal-actions a:focus-visible {
+.modal-actions a:focus-visible,
+.contact-actions a:focus-visible {
   outline: 2px solid #8fe7cc;
   outline-offset: 2px;
 }
@@ -419,24 +448,69 @@ h1 {
 
 .contact-card h2 {
   margin-top: 0.5rem;
-  max-width: 18ch;
+  max-width: 24ch;
 }
 
-.contact-links {
-  margin-top: 1rem;
-  display: grid;
-  gap: 0.35rem;
-}
-
-.contact-links a {
-  color: #ffd0ac;
-  text-decoration: none;
-  width: fit-content;
-}
-
-.founder-note {
+.contact-intro {
   margin: 0.65rem 0 0;
   color: var(--text-muted);
+}
+
+.contact-audiences {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.contact-group {
+  background: rgba(16, 24, 39, 0.52);
+  border: 1px solid rgba(173, 196, 228, 0.16);
+  border-radius: 0.95rem;
+  padding: 1rem;
+}
+
+.contact-kicker {
+  margin: 0;
+  color: #9fd7c4;
+  font-size: 0.78rem;
+  font-family: "JetBrains Mono", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.contact-group h3 {
+  margin-top: 0.5rem;
+  font-size: 1.02rem;
+}
+
+.contact-group p:last-of-type {
+  margin: 0.55rem 0 0;
+  color: var(--text-muted);
+}
+
+.contact-actions {
+  margin-top: 0.9rem;
+  display: flex;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.contact-actions a {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(173, 196, 228, 0.1);
+  color: #ffd0ac;
+  text-decoration: none;
+  padding: 0.42rem 0.85rem;
+  font-size: 0.78rem;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.contact-actions a:first-child {
+  color: var(--text);
+  border-color: rgba(143, 231, 204, 0.35);
+  background: rgba(143, 231, 204, 0.12);
 }
 
 body.modal-open {
@@ -607,7 +681,8 @@ body.modal-open {
 
 @media (max-width: 980px) {
   .project-grid,
-  .skills-grid {
+  .skills-grid,
+  .contact-audiences {
     grid-template-columns: 1fr;
   }
 

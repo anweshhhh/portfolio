@@ -20,8 +20,10 @@ const PROJECT_LIBRARY = {
   tracecase: {
     title: "TraceCase",
     subtitle: "Generation-first QA workflow for B2B SaaS teams",
-    problem:
-      "Requirement-to-test workflows slow down when draft generation, review, and release traceability live in separate tools.",
+    summary:
+      "TraceCase turns requirement text into draft regression packs, keeps source snapshots immutable, and routes work through review and export flows.",
+    impact:
+      "Why it matters: generated QA output stays reviewable, traceable, and release-ready instead of becoming black-box automation.",
     highlights: [
       "Requirement snapshots with immutable version history",
       "Asynchronous draft-pack generation and export jobs via Inngest",
@@ -42,8 +44,10 @@ const PROJECT_LIBRARY = {
   clob: {
     title: "CLOB Market Maker Lab",
     subtitle: "Real-time market-making research harness",
-    problem:
-      "Maker strategies need safe experimentation loops before risking capital in live market conditions.",
+    summary:
+      "Research harness that consumes live market data, runs strategy logic through risk controls, and records paper execution for analysis.",
+    impact:
+      "Why it matters: new strategies can be tested against live conditions without risking capital.",
     highlights: [
       "WebSocket market data with fault-tolerant feed handling",
       "Paper simulator, risk controls, and PnL accounting",
@@ -64,8 +68,10 @@ const PROJECT_LIBRARY = {
   securityq: {
     title: "SecurityQ Autofill",
     subtitle: "OpenAI-backed questionnaire automation",
-    problem:
-      "Security reviews bottleneck vendor onboarding when draft answers are not grounded in retrievable evidence.",
+    summary:
+      "SecurityQ ingests source docs, creates embeddings, retrieves evidence, and drafts cited questionnaire responses through OpenAI-backed flows.",
+    impact:
+      "Why it matters: teams get faster vendor responses without losing citations or review control.",
     highlights: [
       "OpenAI embeddings and chat completions behind the answer engine",
       "Document ingestion, chunking, and retrieval over source evidence",
@@ -86,8 +92,10 @@ const PROJECT_LIBRARY = {
   webhook: {
     title: "Webhook Reliability Platform",
     subtitle: "Durable outbound event delivery",
-    problem:
-      "Retry-heavy outbound workflows fail silently without store-first durability, explicit retries, and delivery visibility.",
+    summary:
+      "Store-first ingest service that persists outbound events, schedules retries, and lets workers claim due deliveries safely.",
+    impact:
+      "Why it matters: delivery failures become observable and recoverable instead of silent event loss.",
     highlights: [
       "Store-first ingestion with scheduled retry state",
       "Concurrency-safe claiming using SKIP LOCKED",
@@ -109,8 +117,10 @@ const PROJECT_LIBRARY = {
   ratelimiter: {
     title: "Distributed Rate Limiter",
     subtitle: "Distributed traffic policy service",
-    problem:
-      "API platforms need deterministic throttling across nodes under bursty traffic and shared limits.",
+    summary:
+      "Go service that applies fixed, sliding, and token-bucket policies through atomic Redis and Lua checks.",
+    impact:
+      "Why it matters: limit decisions stay deterministic across nodes under bursty traffic.",
     highlights: [
       "Fixed window, sliding window, and token bucket algorithms",
       "Atomic Redis Lua enforcement in a single round-trip",
@@ -135,13 +145,17 @@ const modalTitle = document.querySelector("#modalTitle");
 const modalSubtitle = document.querySelector("#modalSubtitle");
 const modalImage = document.querySelector("#modalImage");
 const modalCaption = document.querySelector("#modalCaption");
-const modalProblem = document.querySelector("#modalProblem");
+const modalSummary = document.querySelector("#modalSummary");
+const modalImpact = document.querySelector("#modalImpact");
 const modalHighlights = document.querySelector("#modalHighlights");
 const modalDemo = document.querySelector("#modalDemo");
 const modalGithub = document.querySelector("#modalGithub");
 const modalCaseStudy = document.querySelector("#modalCaseStudy");
 const carouselPrev = document.querySelector("#carouselPrev");
 const carouselNext = document.querySelector("#carouselNext");
+const accordionButtons = Array.from(document.querySelectorAll("[data-accordion-button]"));
+const skillsToggle = document.querySelector("#skillsToggle");
+const skillsPanel = document.querySelector("#skillsPanel");
 
 let activeProjectId = null;
 let activeImageIndex = 0;
@@ -182,7 +196,8 @@ function renderModal(projectId) {
 
   if (modalTitle) modalTitle.textContent = project.title;
   if (modalSubtitle) modalSubtitle.textContent = project.subtitle;
-  if (modalProblem) modalProblem.textContent = project.problem;
+  if (modalSummary) modalSummary.textContent = project.summary || "";
+  if (modalImpact) modalImpact.textContent = project.impact || "";
 
   if (modalHighlights) {
     modalHighlights.innerHTML = "";
@@ -251,6 +266,34 @@ document.querySelectorAll(".quick-view-btn").forEach((button) => {
     openModal(button.dataset.project, button);
   });
 });
+
+function setAccordionItem(button, expanded) {
+  const panelId = button.getAttribute("aria-controls");
+  const panel = panelId ? document.getElementById(panelId) : null;
+  const icon = button.querySelector(".experience-icon");
+
+  button.setAttribute("aria-expanded", expanded ? "true" : "false");
+  if (panel) panel.hidden = !expanded;
+  if (icon) icon.textContent = expanded ? "−" : "+";
+}
+
+accordionButtons.forEach((button) => {
+  setAccordionItem(button, false);
+  button.addEventListener("click", () => {
+    const isExpanded = button.getAttribute("aria-expanded") === "true";
+    accordionButtons.forEach((otherButton) => setAccordionItem(otherButton, false));
+    if (!isExpanded) setAccordionItem(button, true);
+  });
+});
+
+if (skillsToggle && skillsPanel) {
+  skillsToggle.addEventListener("click", () => {
+    const isExpanded = skillsToggle.getAttribute("aria-expanded") === "true";
+    skillsToggle.setAttribute("aria-expanded", isExpanded ? "false" : "true");
+    skillsToggle.textContent = isExpanded ? "View Full Stack" : "Hide Full Stack";
+    skillsPanel.hidden = isExpanded;
+  });
+}
 
 document.querySelectorAll("[data-close-modal]").forEach((node) => {
   node.addEventListener("click", closeModal);

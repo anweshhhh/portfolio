@@ -16,39 +16,6 @@ const observer = new IntersectionObserver(
 
 document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 
-function formatDate(dateLike) {
-  const date = new Date(dateLike);
-  if (Number.isNaN(date.getTime())) return "--";
-  return date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-}
-
-async function hydrateRepoMeta(card) {
-  const repo = card.dataset.repo;
-  if (!repo) return;
-
-  try {
-    const res = await fetch(`https://api.github.com/repos/${repo}`);
-    if (!res.ok) throw new Error("GitHub API unavailable");
-    const data = await res.json();
-
-    const updated = card.querySelector('[data-field="updated"]');
-    const pill = card.querySelector(".pill");
-
-    if (updated) updated.textContent = `Updated: ${formatDate(data.updated_at)}`;
-    if (pill && data.language) pill.textContent = data.language;
-  } catch (_error) {
-    // Intentionally silent fallback to static card text.
-  }
-}
-
-for (const card of document.querySelectorAll(".project-card")) {
-  hydrateRepoMeta(card);
-}
-
 const PROJECT_LIBRARY = {
   tracecase: {
     title: "TraceCase",
@@ -282,14 +249,6 @@ function trapFocus(event) {
 document.querySelectorAll(".quick-view-btn").forEach((button) => {
   button.addEventListener("click", () => {
     openModal(button.dataset.project, button);
-  });
-});
-
-document.querySelectorAll(".project-shot").forEach((shot) => {
-  shot.addEventListener("click", () => {
-    const card = shot.closest(".project-card");
-    const quickView = card?.querySelector(".quick-view-btn");
-    if (quickView) openModal(quickView.dataset.project, quickView);
   });
 });
 

@@ -287,6 +287,13 @@ h1 {
   max-width: 19ch;
 }
 
+.section-copy {
+  margin: 0.75rem 0 0;
+  max-width: 48ch;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
 .project-grid {
   margin-top: 1.75rem;
   display: grid;

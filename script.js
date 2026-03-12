@@ -19,20 +19,20 @@ document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 const PROJECT_LIBRARY = {
   tracecase: {
     title: "TraceCase",
-    subtitle: "QA automation for B2B SaaS teams",
+    subtitle: "Generation-first QA workflow for B2B SaaS teams",
     problem:
-      "Manual requirement-to-test workflows are slow, inconsistent, and hard to audit across releases.",
+      "Requirement-to-test workflows slow down when draft generation, review, and release traceability live in separate tools.",
     highlights: [
       "Requirement snapshots with immutable version history",
-      "Asynchronous draft pack generation via Inngest jobs",
-      "Role-based review, approvals, and locked immutable packs",
+      "Asynchronous draft-pack generation and export jobs via Inngest",
+      "Review, approvals, and audit-friendly pack history",
     ],
     images: [
       {
         src: "assets/projects/tracecase/architecture.svg",
         alt: "TraceCase architecture diagram showing requirements flowing into async generation, review, export, and audit records.",
         caption:
-          "Requirement snapshots enter an Inngest-backed generation pipeline, then move through review, export, and audit logging.",
+          "Requirement snapshots enter a generation pipeline, then move through review, export, and audit logging before release.",
       },
     ],
     demoUrl: "",
@@ -41,11 +41,11 @@ const PROJECT_LIBRARY = {
   },
   clob: {
     title: "CLOB Market Maker Lab",
-    subtitle: "Resilient orderbook-driven strategy simulation",
+    subtitle: "Real-time market-making research harness",
     problem:
-      "Maker strategies need safe experimentation before risking capital in live market conditions.",
+      "Maker strategies need safe experimentation loops before risking capital in live market conditions.",
     highlights: [
-      "WebSocket market data pipeline with fault-tolerant handling",
+      "WebSocket market data with fault-tolerant feed handling",
       "Paper simulator, risk controls, and PnL accounting",
       "Backtesting workflow with generated reports",
     ],
@@ -63,20 +63,20 @@ const PROJECT_LIBRARY = {
   },
   securityq: {
     title: "SecurityQ Autofill",
-    subtitle: "Security questionnaire response acceleration",
+    subtitle: "OpenAI-backed questionnaire automation",
     problem:
-      "Security reviews often bottleneck vendor onboarding because evidence retrieval is manual.",
+      "Security reviews bottleneck vendor onboarding when draft answers are not grounded in retrievable evidence.",
     highlights: [
-      "Document ingestion and embedding API pipeline",
-      "Question answering API for evidence-backed responses",
-      "Operator-facing Next.js flows for documents and questionnaires",
+      "OpenAI embeddings and chat completions behind the answer engine",
+      "Document ingestion, chunking, and retrieval over source evidence",
+      "Operator-facing review flows for documents and questionnaires",
     ],
     images: [
       {
         src: "assets/projects/securityq/architecture.svg",
         alt: "SecurityQ architecture diagram showing ingestion, chunking, embeddings, evidence retrieval, and cited answer generation.",
         caption:
-          "Uploaded documents are chunked and embedded for retrieval, then reused during questionnaire autofill to produce cited answers.",
+          "Uploaded documents are chunked, embedded, and retrieved through OpenAI-backed flows to produce cited draft answers.",
       },
     ],
     demoUrl: "",
@@ -85,13 +85,13 @@ const PROJECT_LIBRARY = {
   },
   webhook: {
     title: "Webhook Reliability Platform",
-    subtitle: "Durable webhook ingestion and delivery worker",
+    subtitle: "Durable outbound event delivery",
     problem:
-      "Webhook systems silently fail without durable queues, explicit retries, and delivery observability.",
+      "Retry-heavy outbound workflows fail silently without store-first durability, explicit retries, and delivery visibility.",
     highlights: [
-      "Store-first ingestion with decoupled worker processing",
+      "Store-first ingestion with scheduled retry state",
       "Concurrency-safe claiming using SKIP LOCKED",
-      "Retry scheduling and attempt audit logging",
+      "Append-only attempt history for delivery visibility",
     ],
     images: [
       {
@@ -108,12 +108,12 @@ const PROJECT_LIBRARY = {
   },
   ratelimiter: {
     title: "Distributed Rate Limiter",
-    subtitle: "Redis + Lua distributed traffic controls",
+    subtitle: "Distributed traffic policy service",
     problem:
-      "API infrastructure needs deterministic throttling under bursty traffic and distributed deployments.",
+      "API platforms need deterministic throttling across nodes under bursty traffic and shared limits.",
     highlights: [
       "Fixed window, sliding window, and token bucket algorithms",
-      "Atomic Lua enforcement in Redis single round-trip",
+      "Atomic Redis Lua enforcement in a single round-trip",
       "Deterministic concurrency validation with miniredis",
     ],
     images: [
